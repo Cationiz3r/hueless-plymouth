@@ -1,8 +1,11 @@
 #include "anim.hpp"
 
 Anim::Anim() {
+	sf::ContextSettings settings;
+	settings.antialiasingLevel = 8;
+
 	frame = 0;
-	window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Boot animation", sf::Style::Fullscreen);
+	window = new sf::RenderWindow(sf::VideoMode(400, 400), "Boot animation", sf::Style::Default, settings);
 	window->setFramerateLimit(60);
 	window->setMouseCursorVisible(0);
 	window->setVerticalSyncEnabled(0);
@@ -17,7 +20,7 @@ Anim::Anim() {
 }
 
 void Anim::tri_render() {
-	sf::Vector2f center = { (float)window->getSize().x/2, (float)window->getSize().y/2 };
+	sf::Vector2f center = { (float)window->getSize().x/2, (float)window->getSize().y/2 - 30 };
 
 	float angle = PI/2;
 	float offset = 1 - frame % (tri_duration/3) / (tri_duration/3.0);
@@ -116,7 +119,7 @@ void Anim::play() {
 		saveframe();
 
 		frame++;
-		if (frame > frame_last) window->close();
+		if (frame >= frame_last) window->close();
 	}
 }
 
