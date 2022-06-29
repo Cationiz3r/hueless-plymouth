@@ -87,17 +87,19 @@ void Anim::tri_render() {
 }
 
 void Anim::saveframe() {
-	//sf::Vector2u windowSize = window->getSize();
-	//sf::Texture texture;
-	//texture.create(windowSize.x, windowSize.y);
-	//texture.update(window);
-	//sf::Image screenshot = texture.copyToImage();
-	//std::stringstream frame_n;
-	//frame_n << frame;
-	//std::string id = std::string(3, '0').append(frame_n);
-	//std::cout <<"'" <<id <<"'\n";
-	//std::cout <<std::string(12) <<"\n";
-	//screenshot.saveToFile("frame"+);
+	sf::Vector2u windowSize = window->getSize();
+	sf::Texture texture;
+	texture.create(windowSize.x, windowSize.y);
+	texture.update(*window);
+	sf::Image screenshot = texture.copyToImage();
+
+	std::string id;
+	int n = frame;
+	for (int i=0; i<3; ++i) {
+		id = (char)(n%10+'0') + id;
+		n /= 10;
+	}
+	screenshot.saveToFile("frame"+id+".png");
 }
 void Anim::play() {
 	while (window->isOpen()) {
