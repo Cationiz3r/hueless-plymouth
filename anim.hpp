@@ -6,7 +6,6 @@
 #include <iostream>
 #include <vector>
 #include <numeric>
-#include <time.h>
 
 #define PI 3.141592
 #define TRI PI*2/3
