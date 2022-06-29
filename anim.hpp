@@ -17,7 +17,7 @@ class Anim {
 
 	// Triangle config
 	float tri_size, tri_width;
-	int tri_duration;
+	int tri_duration, tri_duration_end;
 	// Middle Triangle
 	sf::Vertex triangle[3][4];
 	void tri_render();

@@ -2,7 +2,6 @@
 
 Anim::Anim() {
 	frame = 0;
-	frame_last = 300;
 	window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Boot animation", sf::Style::Fullscreen);
 	window->setFramerateLimit(60);
 	window->setMouseCursorVisible(0);
@@ -11,6 +10,9 @@ Anim::Anim() {
 	tri_size = 150;
 	tri_width = 20;
 	tri_duration = 100;
+	tri_duration_end = 150;
+
+	frame_last = tri_duration*3 + tri_duration_end;
 }
 
 void Anim::tri_render() {
@@ -18,7 +20,8 @@ void Anim::tri_render() {
 
 	float angle = PI/2,
 		factor = 1 - (frame % tri_duration) / (float)tri_duration,
-		side = (frame / tri_duration) % 3;
+		side = (frame / tri_duration) % 3; // This means it take 3 "tri_duration" to complete a cycle
+	if (frame >= tri_duration*3) angle += (1 - std::cos((frame-tri_duration*3)/(float)tri_duration_end*PI))/2*TRI;
 	triangle[0][0].color = sf::Color(0, 0, 0);
 	triangle[0][0].position = center + mid(
 		sf::Vector2f(tri_size * std::cos(angle+side*TRI),     tri_size * std::sin(angle+side*TRI)),
@@ -88,7 +91,7 @@ void Anim::play() {
 		saveframe();
 
 		frame++;
-		//if (frame > frame_last) window->close();
+		if (frame > frame_last) window->close();
 	}
 }
 
