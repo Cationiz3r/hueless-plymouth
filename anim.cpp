@@ -96,13 +96,17 @@ void Anim::saveframe() {
 	texture.update(*window);
 	sf::Image screenshot = texture.copyToImage();
 
-	std::string id;
+	std::string id, type = "throbber";
 	int n = frame;
+	if (frame >= tri_duration) {
+		type = "animation";
+		n = (n - tri_duration) / 5;
+	}
 	for (int i=0; i<3; ++i) {
 		id = (char)(n%10+'0') + id;
 		n /= 10;
 	}
-	screenshot.saveToFile("frame"+id+".png");
+	screenshot.saveToFile(type + id + ".png");
 }
 void Anim::play() {
 	while (window->isOpen()) {
@@ -116,7 +120,8 @@ void Anim::play() {
 		tri_render();
 		window->display();
 
-		saveframe();
+		// Plymouth animation framerate is low
+		if (frame < tri_duration || !(frame % 5)) saveframe();
 
 		frame++;
 		if (frame >= frame_last) window->close();
