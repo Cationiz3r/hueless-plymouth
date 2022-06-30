@@ -1,0 +1,31 @@
+[Plymouth Theme]
+Name=Hueless/Void
+Description=Spinning triagular trail
+ModuleName=two-step
+
+[two-step]
+ImageDir=/usr/share/plymouth/themes/hueless-plymouth
+BackgroundStartColor=0x000000
+BackgroundEndColor=0x000000
+HorizontalAlignment=0.5
+VerticalAlignment=0.5
+Transition=none
+ProgressBarHeight=0
+
+[boot-up]
+UseAnimation=true
+
+[shutdown]
+UseAnimation=true
+
+[reboot]
+UseAnimation=true
+
+[updates]
+UseAnimation=true
+
+[system-upgrade]
+UseAnimation=true
+
+[firmware-upgrade]
+UseAnimation=true
