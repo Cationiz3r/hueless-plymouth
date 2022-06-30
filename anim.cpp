@@ -20,7 +20,7 @@ Anim::Anim() {
 }
 
 void Anim::tri_render() {
-	sf::Vector2f center = { (float)window->getSize().x/2, (float)window->getSize().y/2 - 30 };
+	sf::Vector2f center = { (float)window->getSize().x/2, (float)window->getSize().y/2 };
 
 	float angle = PI/2;
 	float offset = 1 - frame % (tri_duration/3) / (tri_duration/3.0);
@@ -96,10 +96,10 @@ void Anim::saveframe() {
 	texture.update(*window);
 	sf::Image screenshot = texture.copyToImage();
 
-	std::string id, type = "throbber";
+	std::string id, type = "throbber-";
 	int n = frame;
 	if (frame >= tri_duration) {
-		type = "animation";
+		type = "animation-";
 		n = (n - tri_duration) / 5;
 	}
 	for (int i=0; i<3; ++i) {
