@@ -31,7 +31,7 @@ void Anim::tri_render() {
 
 	// End of loop, finish animation
 	if (frame > tri_duration) {
-		//angle += (1 - std::cos((frame-tri_duration)/(float)tri_duration_end*PI))/2*TRI;
+		angle += (1 - std::cos((frame-tri_duration)/(float)tri_duration_end*PI))/2*TRI;
 		trail_length += (trail_endlength - trail_length)*std::pow((frame-tri_duration)/(float)tri_duration_end, 2);
 		offset_tail = trail_length - offset;
 		--n;
