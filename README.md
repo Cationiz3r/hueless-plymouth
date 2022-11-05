@@ -34,7 +34,7 @@ plymouth-set-default-theme -l
 
 From here, to make the boot animation permanent, run
 ```sh
-plymouth-set-default-theme -R huelessos-plymouth
+sudo plymouth-set-default-theme -R huelessos-plymouth
 ```
 
 ## TODO
