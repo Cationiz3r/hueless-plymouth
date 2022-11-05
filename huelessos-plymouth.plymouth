@@ -4,7 +4,7 @@ Description=Spinning triagular trail
 ModuleName=two-step
 
 [two-step]
-ImageDir=/usr/share/plymouth/themes/hueless-plymouth
+ImageDir=/usr/share/plymouth/themes/huelessos-plymouth
 BackgroundStartColor=0x000000
 BackgroundEndColor=0x000000
 HorizontalAlignment=0.5

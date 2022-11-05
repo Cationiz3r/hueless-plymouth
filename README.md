@@ -23,7 +23,7 @@ Just run `./make` from the repo root
 
 ## Installing
 After compiling, there should be a folder name `build`, copy it as
-`/usr/share/plymouth/themes/hueless-plymouth`, you can also use prebuilt package in the
+`/usr/share/plymouth/themes/huelessos-plymouth`, you can also use prebuilt package in the
 ![Release](https://github.com/Cationiz3r/huelessos-plymouth/releases) page
 
 To verify that the theme has been installed correctly, `huelessos-plymouth` should appear
