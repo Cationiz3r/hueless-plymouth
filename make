@@ -1,9 +1,12 @@
 #!/bin/sh
+# Config
+BUILDDIR=huelessos-plymouth
+
 # Bootstrap & check dependencies
 fail() { >&2 echo "failed: $@"; exit 1; }
 cd "$(dirname "$0")" || fail cd
-[ -d hueless-plymouth ] && fail already made
-mkdir -vp hueless-plymouth
+[ -d $BUILDDIR ] && fail already made
+mkdir -vp $BUILDDIR
 which convert >/dev/null 2>&1 || fail no convert
 
 # Compiling
@@ -14,9 +17,9 @@ g++ -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/harfbuzz -I/
 
 # Moving stuff
 echo :: Moving stuff
-cd hueless-plymouth
+cd $BUILDDIR
 mv -v ../animation-* ../throbber-* .
-cp -v ../empty* ../hueless-plymouth.plymouth .
+cp -v ../empty* ../$BUILDDIR.plymouth .
 
 # Apply glow FX
 echo :: Applying glowfx
