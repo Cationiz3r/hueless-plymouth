@@ -22,4 +22,5 @@ booting process is completed.
 Just run `./make` from the repo root
 
 ## TODO
-Remove rendering to screen while making theme
+- [x] Remove rendering to screen while making theme
+- [ ] Make release package
