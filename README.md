@@ -4,17 +4,20 @@ an upside down triangle path. The whole triangle will spin then flash when the
 booting process is completed.
 
 ## Preview
-Loop
+### Loop
 ![loopityloop](preview/loop.gif)
 
-End
+### End
 ![endityend](preview/end.gif)
 
 ## Compiling
 ### Dependencies
 `sfml` for rendering C++ animation scene
+
 `imagemagick` for glowing effect
+
 `optipng` for png optimization
+
 ### Commands
 Just run `./make` from the repo root
 
