@@ -1,6 +1,7 @@
 #!/bin/sh
 # Config
-BUILDDIR=huelessos-plymouth
+THEMENAME=huelessos-plymouth
+BUILDDIR=build
 
 # Bootstrap & check dependencies
 fail() { >&2 echo "failed: $@"; exit 1; }
@@ -13,17 +14,16 @@ which convert >/dev/null 2>&1 || fail no convert
 echo :: Compiling
 g++ -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/harfbuzz -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/sysprof-4 -pthread -I/usr/include/AL -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-network -lsfml-system \
 	main.cpp anim.cpp -o anim || fail compiler
-./anim || fail exec
+cd $BUILDDIR
+../anim || fail exec
 
 # Moving stuff
 echo :: Moving stuff
-cd $BUILDDIR
-mv -v ../animation-* ../throbber-* .
-cp -v ../empty* ../$BUILDDIR.plymouth .
+cp -v ../empty* ../$THEMENAME.plymouth .
 
 # Apply glow FX
 echo :: Applying glowfx
-for i in *.png; do
+for i in animation-*.png throbber-*.png; do
 	echo "postfx: $i"
 	convert $i \( $i -blur 0x8 -alpha on -channel alpha -evaluate set 50% \) -compose Plus -composite $i;
 done
