@@ -5,15 +5,13 @@ Anim::Anim() {
 	settings.antialiasingLevel = 8;
 
 	frame = 0;
-	window = new sf::RenderWindow(sf::VideoMode(400, 400), "Boot animation", sf::Style::Default, settings);
-	window->setFramerateLimit(60);
-	window->setMouseCursorVisible(0);
-	window->setVerticalSyncEnabled(0);
+	window = new sf::RenderTexture();
+	window->create(400, 400, settings);
 
 	tri_size = 150;
 	tri_width = 30;
 	tri_duration = 300; //Loop
-	tri_duration_end = 150;
+	tri_duration_end = 30;
 	trail_endlength = 5;
 
 	frame_last = tri_duration + tri_duration_end;
@@ -90,41 +88,26 @@ void Anim::tri_render() {
 }
 
 void Anim::saveframe() {
-	sf::Vector2u windowSize = window->getSize();
-	sf::Texture texture;
-	texture.create(windowSize.x, windowSize.y);
-	texture.update(*window);
-	sf::Image screenshot = texture.copyToImage();
-
 	std::string id, type = "throbber-";
 	int n = frame;
 	if (frame >= tri_duration) {
 		type = "animation-";
-		n = (n - tri_duration) / 5;
+		n -= tri_duration;
 	}
 	for (int i=0; i<3; ++i) {
 		id = (char)(n%10+'0') + id;
 		n /= 10;
 	}
-	screenshot.saveToFile(type + id + ".png");
+
+	window->getTexture().copyToImage().saveToFile(type + id + ".png");
 }
 void Anim::play() {
-	while (window->isOpen()) {
-		sf::Event e;
-		while (window->pollEvent(e)) {
-			if (e.type == sf::Event::Closed) window->close();
-			if (e.key.code == sf::Keyboard::Q) window->close();
-		}
-
+	for (frame = 0; frame < frame_last; ++frame) {
 		window->clear();
 		tri_render();
 		window->display();
 
-		// Plymouth animation framerate is low
-		if (frame < tri_duration || !(frame % 5)) saveframe();
-
-		frame++;
-		if (frame >= frame_last) window->close();
+		saveframe();
 	}
 }
 

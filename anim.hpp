@@ -13,7 +13,7 @@
 
 class Anim {
 	int frame, frame_last;
-	sf::RenderWindow *window;
+	sf::RenderTexture *window;
 	void saveframe();
 
 	// Triangle config
