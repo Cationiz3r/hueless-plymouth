@@ -102,7 +102,7 @@ void Anim::saveframe() {
 	window->getTexture().copyToImage().saveToFile(type + id + ".png");
 }
 void Anim::play() {
-	for (frame = 0; frame < frame_last; ++frame) {
+	for (frame = 0; frame < frame_last + 1; ++frame) {
 		window->clear();
 		tri_render();
 		window->display();

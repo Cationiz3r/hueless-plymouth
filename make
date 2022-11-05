@@ -34,7 +34,7 @@ for i in bullet.png entry.png lock.png; do ln -sv empty.png $i; done
 
 # Freeze at last frame and stutter out
 echo :: Generating animation last frames
-for i in 36 $(seq 30 34) $(seq 39 41) 44; do           ln -sv animation-029.png   animation-0$i.png; done
+for i in 36 $(seq 31 34) $(seq 39 41) 44; do           ln -sv animation-030.png   animation-0$i.png; done
 for i in 35 $(seq 37 38) $(seq 42 43) $(seq 45 49); do ln -sv empty-animation.png animation-0$i.png; done
 
 # Optimizing pngs
